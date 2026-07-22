@@ -21,7 +21,7 @@ provider "aws" {
 
 variable "aws_region" {
   type        = string
-  default     = "eu-west-2"
+  default     = "eu-west-1"
   description = "The target AWS Region for workshop deployment."
 }
 
