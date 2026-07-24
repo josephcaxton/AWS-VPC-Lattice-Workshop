@@ -2,15 +2,15 @@
 # Configuring the AWS provider and general variables...
 
 terraform {
-  required_version = ">= 1.3.0"
+  required_version = ">= 1.15.8"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 6.0"
     }
     archive = {
       source  = "hashicorp/archive"
-      version = "~> 2.3"
+      version = "~> 2.7"
     }
   }
 }
@@ -151,6 +151,19 @@ resource "aws_security_group" "client_sg" {
   description = "Allows outbound traffic for the Client EC2"
   vpc_id      = aws_vpc.vpc_a.id
 
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
   # Allow all standard outbound traffic
   egress {
     from_port   = 0
