@@ -1,6 +1,15 @@
 AWS VPC Lattice Client Workshop: Hands-on Lab & Facilitation Guide
 
-This guide is designed to help you prepare, provision, and successfully run the hands-on lab portion of your AWS VPC Lattice Client Workshop. It translates the abstract concepts from your presentation slides into an interactive, multi-VPC learning experience.
+This guide is designed to help you prepare, provision, and successfully run the hands-on lab portion of your AWS VPC Lattice Client Workshop by Epitechnic. It translates the abstract concepts from Joseph's presentation slides into an interactive, multi-VPC learning experience.
+
+### Important Note
+To save time, the infrastructure needed for this to work has been created in this repo.
+
+1. Configure you machine to connect to AWS account using the AWSCLi
+2. To deploy to the same AWS Account change into Same-Account folder and run terraform plan and apply
+3. To deploy to separate accounts, Configure the relevant account and Change to either Account-1 or Account-2 and deploy. Account-1 will be client account and Account-2 will be the backend account
+
+
 
 1. Lab Architecture Overview
 
