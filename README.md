@@ -9,7 +9,7 @@ To save time, the infrastructure needed for this to work has been created in thi
 2. To deploy to the same AWS Account change into Same-Account folder and run terraform plan and apply
 3. To deploy to separate accounts, Configure the relevant account and Change to either Account-1 or Account-2 and deploy. Account-1 will be client account and Account-2 will be the backend account
 
-
+### Lab
 
 1. Lab Architecture Overview
 
