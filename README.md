@@ -3,11 +3,11 @@ AWS VPC Lattice Client Workshop: Hands-on Lab & Facilitation Guide
 This guide is designed to help you prepare, provision, and successfully run the hands-on lab portion of your AWS VPC Lattice Client Workshop by Epitechnic. It translates the abstract concepts from Joseph's presentation slides into an interactive, multi-VPC learning experience.
 
 ### Important Note
-To save time, the infrastructure needed for this to work has been created in this repo.
+To save time, the infrastructure needed for this to workshop has been created in this repo.
 
-1. Configure you machine to connect to AWS account using the AWSCLi
+1. Configure your machine to connect to AWS account using the AWSCLi
 2. To deploy to the same AWS Account change into Same-Account folder and run terraform plan and apply
-3. To deploy to separate accounts, Configure the relevant account and Change to either Account-1 or Account-2 and deploy. Account-1 will be client account and Account-2 will be the backend account
+3. Optionally if you want to deploy to separate accounts, configure aws credentials for relevant account and change to either Account-1 or Account-2 and do terrform plan and deploy. Account-1 will be client account and Account-2 will be the backend account
 
 ### Lab
 
@@ -52,13 +52,13 @@ Target Group 1 (Primary): EC2 Instance Web Server running a simple HTTP microser
 
 Target Group 2 (Canary): AWS Lambda function serving a JSON response representing "V2".
 
-No Gateways / Proxies: Point out to attendees that there is no NAT Gateway, Internet Gateway, Transit Gateway, or ALB sitting between VPC A and VPC B.
+No Gateways / Proxies: No NAT Gateway, Internet Gateway, Transit Gateway, or ALB sitting between VPC A and VPC B.
 
 2. Infrastructure Provisioning (Pre-Workshop Setup)
 
-To ensure the workshop runs smoothly, you should pre-provision the underlying network and compute resources so attendees can focus purely on configuring VPC Lattice.
+To safe time, you should pre-provision the underlying network and compute resources so you can focus purely on configuring VPC Lattice.
 
-We recommend deploying the infrastructure via AWS CloudFormation or Terraform (main.tf). Below is the resource breakdown included in automated templates:
+Deploying the infrastructure using Terraform (main.tf) as advised in the important note section of this document. Below is the resource breakdown included in automated templates:
 
 Resources Pre-Provisioned
 
@@ -100,7 +100,7 @@ Under VPC Associations, associate both VPC-A and VPC-B. Select the appropriate s
 
 Facilitator's Insight:
 
-Explain to attendees: "When we associate these VPCs, AWS dynamically provisions Lattice VPC endpoints in your subnets. The security group you select attaches directly to these managed ENIs. Client requests route directly to these managed endpoints using link-local addressing."
+When we associate these VPCs, AWS dynamically provisions Lattice VPC endpoints in your subnets. The security group you select attaches directly to these managed ENIs. Client requests route directly to these managed endpoints using link-local addressing.
 
 Lab 2: Route Traffic & Map Services (Route)
 
@@ -214,7 +214,7 @@ Observe that approximately $80\%$ of responses yield "Hello from App V1" and $20
 
 4. Troubleshooting Matrix & Security Group Rules
 
-Keep this reference ready for attendees encountering network issues:
+Reference for attendees encountering network issues:
 
 |
 
