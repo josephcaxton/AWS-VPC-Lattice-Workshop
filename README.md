@@ -160,12 +160,24 @@ Apply a strict Auth Policy:
     {
       "Effect": "Allow",
       "Principal": "*",
-      "Action": "vpc-lattice-svc:Invoke",
+      "Action": "vpc-lattice-svcs:Invoke",
       "Resource": "*"
     }
   ]
 }
 
+### Note : If console update is not working create the policy in a file use the cli from terminal to apply it
+
+### For Service 
+aws vpc-lattice put-auth-policy --resource-identifier <your-service-arn-or-id> --region eu-west-1 --policy file://policy.json
+
+And then change service to AWS_IAM
+aws vpc-lattice update-service --service-identifier <your-service-arn-or-id> --region eu-west-1 --auth-type AWS_IAM
+
+### For Service Network
+aws vpc-lattice put-auth-policy --resource-identifier <your-service-network-arn-or-id> --region eu-west-1 --policy file://policy.json
+
+aws vpc-lattice update-service-network --service-network-identifier <your-service-network-arn-or-id> --region eu-west-1 --auth-type AWS_IAM
 
 
 Test Blocked Access:
