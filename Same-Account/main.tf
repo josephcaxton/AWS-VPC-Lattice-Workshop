@@ -387,13 +387,13 @@ data "archive_file" "lambda_zip" {
   source {
     content  = <<EOF
 def lambda_handler(event, context):
-return {
-'statusCode': 200,
-'headers': {
-'Content-Type': 'application/json'
-},
-'body': '{"message": "Hello from App V2 (Canary)"}'
-}
+    return {
+       'statusCode': 200,
+       'headers': {
+       'Content-Type': 'application/json'
+       },
+       'body': '{"message": "Hello from App V2 (Canary)"}'
+    }
 EOF
     filename = "index.py"
   }

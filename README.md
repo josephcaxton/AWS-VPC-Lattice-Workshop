@@ -188,8 +188,9 @@ Sign Requests (SigV4):
 
 Execute an authenticated call with native curl SigV4 signing:
 
-curl --aws-sigv4 "aws:amz:us-east-1:vpc-lattice-svc" \
+curl --aws-sigv4 "aws:amz:eu-west-1:vpc-lattice-svcs" \
      --user "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
+     -H "x-amz-content-sha256: UNSIGNED-PAYLOAD" \
      http://<LATTICE_DNS_NAME>
 
 
@@ -200,7 +201,9 @@ Goal: Implement a progressive deployment by shifting target group weights.
 
 Attendee Actions:
 
-Select order-service -> Listeners -> HTTP listener -> Edit rules.
+Select order-service -> Routing -> listener -> Edit listener.
+
+Add new Tag group for lambda and configure weights
 
 Define weights:
 
@@ -208,13 +211,17 @@ TG-EC2-V1: Weight $80$
 
 TG-Lambda-V2: Weight $20$
 
+### If you cannot edit from console use cli
+aws vpc-lattice update-listener --service-identifier "svc-03d8f419696d9833c" --listener-identifier "listener-05469c4dd9f26b61d" --region eu-west-1 --default-action '{"forward": {"targetGroups": [{"targetGroupIdentifier": "tg-0c25d4d5b99bfcdd7","weight": 20},{"targetGroupIdentifier": "tg-026d8d279124bef30","weight": 80}]}}'
+
 Validate Canary Splitting:
 
 Execute a loop script from the Client EC2 instance:
 
 for i in {1..20}; do
-  curl -s --aws-sigv4 "aws:amz:us-east-1:vpc-lattice-svc" \
+  curl -s --aws-sigv4 "aws:amz:eu-west-1:vpc-lattice-svcs" \
        --user "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
+       -H "x-amz-content-sha256: UNSIGNED-PAYLOAD" \
        http://<LATTICE_DNS_NAME>
   echo ""
   sleep 0.3
